@@ -1,0 +1,32 @@
+{
+  "name": "recruitmentvirtustant",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RoniGraizman/RecruitmentVirtustant.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RoniGraizman/RecruitmentVirtustant/issues"
+  },
+  "homepage": "https://github.com/RoniGraizman/RecruitmentVirtustant#readme",
+  "dependencies": {
+    "cookie-session": "^2.0.0",
+    "dotenv": "^16.1.3",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-http-method-override": "^1.0.0",
+    "express-validator": "^7.0.1",
+    "method-override": "^3.0.0",
+    "mysql2": "^3.3.3",
+    "sequelize": "^6.32.0"
+  }
+}
