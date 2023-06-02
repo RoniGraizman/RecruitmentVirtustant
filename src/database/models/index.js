@@ -7,10 +7,11 @@ const process = require('process');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.js')[env];
+require("dotenv").config();
 const db = {};
 
 let sequelize;
-sequelize = new Sequelize(config.database, config.username, config.password, config);
+sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, config);
 
 
 fs
