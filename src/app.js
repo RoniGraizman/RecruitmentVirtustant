@@ -21,10 +21,10 @@ app.use(session({secret:"Secreto", resave:false, saveUninitialized:false,}));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-//const mainRouter = require("./routers/main-router");
+const mainRouter = require("./routers/main-router");
 
 // MOUNT MAIN ROUTER
 
-//app.use(mainRouter);
+app.use(mainRouter);
 
 module.exports = app

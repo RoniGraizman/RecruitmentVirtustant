@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Recruitment | Login</title>  
+</head>
+<body>
+    <div class="w-1/2 my-6 mx-auto bg-gray-100 p-6 rounded-xl">
+        <h1 class="mb-6 text-3xl text-center">Login</h1>
+        <form method="post" action=".">
+    
+            <div class="mb-3">
+                <label class="inline-block mb-2"></label>Username<br>
+                <input name="userName" class="py-4 px-3 border rounded-xl m-2 w-full" type="text" placeholder="User Name">
+                
+            </div>
+            <div class="mb-3">
+                <label class="inline-block mb-2"></label>Password<br>
+                <input name="password" class="py-4 px-3 border rounded-xl m-2 w-full" type="password" placeholder="Password">
+            </div>
+            <% if (locals.errors) {%>
+            <div class="mb-3 p-6 bg-red-100 rounded-xl">
+                <span class="text-red"><%= errors.msg %></span>
+            </div>
+            <% } %>
+
+            <button class="py-1 px-5 text-lg bg-orange-200 hover:bg-orange-300 rounded-xl" id="button">Login</button>
+        </form>
+    </div>
+        
+</body>
+</html>

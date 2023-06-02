@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+<body>
+    <nav class="px-6 py-6 justify-between items-center border-b border-gray-200">
+        <a href="/home" class="text-xl font-semibold">Virtustant</a>
+    </nav>
+    <div class="px-6 py-8 bg-gray-100 rounded-xl">
+        <h2 class="mb-6 text-2xl text-center">Aplicants</h2>
+
+        <form class="mb-6 flex flex-wrap" method="POST" action="/filterApplicants" enctype="form-data" id="form">
+
+            <input name="firstName" class="py-4 px-3 border rounded-xl m-2" type="text" placeholder="First Name">
+
+            <input name="lastName" class="py-4 px-3 border rounded-xl m-2" type="text" placeholder="Last Name">
+
+            <div class="flex flex-wrap mb-2">
+            <label class="w-full mb-1">Country</label>
+            <select name="country" class="py-4 px-3 border rounded-xl">
+                <option selected></option>
+                <% for (const country of AllCountries) { %>
+                    <option value=<%=country.ID_Country%>><%= country.Country %></option>
+                <% } %>
+            </select>
+            </div>
+
+            <div class="flex flex-wrap mb-2">
+            <label class="w-full mb-1">English Level</label>
+            <select name="englishLevel" class="py-4 px-3 border rounded-xl">
+                <option selected></option>
+                <% for (const englishLevel of AllEnglishLevels) { %>
+                    <option value=<%=englishLevel.ID_English_Level%>><%= englishLevel.English_Level %></option>
+                <% } %>
+            </select>
+            </div>
+
+            <div class="flex flex-wrap mb-2">
+            <label class="w-full mb-1">Skill</label>
+            <select name="skill" class="py-4 px-3 border rounded-xl">
+                <option selected></option>
+                <% for (const skill of AllSkills) { %>
+                    <option value=<%=skill.ID_Skill%>><%= skill.Skill %></option>
+                <% } %>
+            </select>
+           </div>
+
+           <div class="flex flex-wrap mb-2">
+            <label class="w-full mb-1">Other Language</label>
+            <select name="otherLanguage" class="py-4 px-3 border rounded-xl">
+                <option selected></option>
+                <% for (const otherLanguage of AllOtherLanguages) { %>
+                    <option value=<%=otherLanguage.ID_Languages%>><%= otherLanguage.Languages %></option>
+                <% } %>
+            </select>
+           </div>
+
+            <button class="py-3 px-6 text-lg bg-orange-200 hover:bg-orange-300 rounded-xl m-2" type="submit">Search</button>
+        </form>
+
+        <div class="grid grid-cols-5 gap-2">
+            <% for (const applicant of AllApplicants) { %>
+                <div>
+                    <div class="p-6 bg-white rounded-b-xl min-h-fit">
+                        <h2 class="text-2xl"><%= applicant.First_Name %></h2>
+                        <h3 class="text-xl"><%= applicant.Last_Name %></h3>
+                        <p class="text-gray-500"><%= applicant.Country.Country %></p>
+                        <p class="text-gray-500"><%= applicant.Email %></p>
+                        <p class="text-gray-500">Phone: <%= applicant.Phone %></p>
+                        <p class="text-gray-500">Availability: <%= applicant.Availability %></p>
+                        <p class="text-gray-500">English Level: <%= applicant.English_Level.English_Level %></p>
+                        <% if (applicant.Specialization) {%>
+                            <p class="text-gray-500">Specialization: <%= applicant.Specialization %></p>
+                        <% } %>
+                        <% if (applicant.Resume_Link) {%>
+                            <p class="text-gray-500">Resume Link: <a class="text-blue-900 underline hover:underline-offset-4" href=<%=applicant.Resume_Link%> download=<%= applicant.First_Name %>>Download CV</a></p>
+                        <% } %>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+</body>
+</html>
