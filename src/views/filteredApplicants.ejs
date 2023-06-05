@@ -22,14 +22,17 @@
         
                 <form class="mb-6 flex flex-wrap" method="POST" action="/filterApplicants" enctype="form-data" id="form">
 
-                    <input name="firstName" class="py-4 px-3 border rounded-xl m-2" type="text" placeholder="First Name">
+                    <input name="firstName" class="py-4 px-3 border rounded-xl m-2" type="text" placeholder="First Name" value="<%= locals.oldData && oldData.firstName ? oldData.firstName : null %>">
         
-                    <input name="lastName" class="py-4 px-3 border rounded-xl m-2" type="text" placeholder="Last Name">
+                    <input name="lastName" class="py-4 px-3 border rounded-xl m-2" type="text" placeholder="Last Name" value="<%= locals.oldData && oldData.lastName ? oldData.lastName : null %>">
         
                     <div class="flex flex-wrap mb-2">
                     <label class="w-full mb-1">Country</label>
                     <select name="country" class="py-4 px-3 border rounded-xl">
                         <option selected></option>
+                        <% if (locals.oldData && oldData.country) { %> 
+                            <option selected value="<%= oldData.country[0].id_country %>"> <%= oldData.country[0].country %>  </option>
+                          <% } %> 
                         <% for (const country of AllCountries) { %>
                             <option value=<%=country.id_country%>><%= country.country %></option>
                         <% } %>
@@ -40,6 +43,9 @@
                     <label class="w-full mb-1">English Level</label>
                     <select name="englishLevel" class="py-4 px-3 border rounded-xl">
                         <option selected></option>
+                        <% if (locals.oldData && oldData.englishLevel) { %> 
+                            <option selected value="<%= oldData.englishLevel[0].id_english_level %>"> <%= oldData.englishLevel[0].english_level %>  </option>
+                        <% } %> 
                         <% for (const englishLevel of AllEnglishLevels) { %>
                             <option value=<%=englishLevel.id_english_level%>><%= englishLevel.english_level %></option>
                         <% } %>
@@ -50,6 +56,9 @@
                     <label class="w-full mb-1">Skill</label>
                     <select name="skill" class="py-4 px-3 border rounded-xl">
                         <option selected></option>
+                        <% if (locals.oldData && oldData.skill) { %> 
+                            <option selected value="<%= oldData.skill[0].id_skill %>"> <%= oldData.skill[0].skill %>  </option>
+                          <% } %> 
                         <% for (const skill of AllSkills) { %>
                             <option value=<%=skill.id_skill%>><%= skill.skill %></option>
                         <% } %>
@@ -60,6 +69,9 @@
                     <label class="w-full mb-1">Other Language</label>
                     <select name="otherLanguage" class="py-4 px-3 border rounded-xl">
                         <option selected></option>
+                        <% if (locals.oldData && oldData.otherLanguage) { %> 
+                            <option selected value="<%= oldData.otherLanguage[0].id_languages %>"> <%= oldData.otherLanguage[0].languages %>  </option>
+                          <% } %> 
                         <% for (const otherLanguage of AllOtherLanguages) { %>
                             <option value=<%=otherLanguage.id_Languages%>><%= otherLanguage.languages %></option>
                         <% } %>

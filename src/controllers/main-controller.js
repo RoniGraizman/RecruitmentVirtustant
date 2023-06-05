@@ -75,6 +75,7 @@ module.exports = {
         const filterEnglishLevel = req.body.englishLevel;
         const filterSkill = req.body.skill;
         const filterOtherLanguage = req.body.otherLanguage;
+        let oldData = req.body
 
         let filteredApplicants = await Applicants.findAll({
             include: [
@@ -94,20 +95,48 @@ module.exports = {
         if(filterCountry !== '') {
             filteredApplicants = filteredApplicants.filter(applicant =>
                 applicant.id_country == filterCountry)
+
+            //oldData
+            oldData.country = await Countries.findAll({
+                where: {
+                    id_country: oldData.country
+                }
+            })
         }
         if(filterEnglishLevel !== '') {
             filteredApplicants = filteredApplicants.filter(applicant =>
                 applicant.id_english_level == filterEnglishLevel)
+
+            //oldData
+            oldData.englishLevel = await EnglishLevels.findAll({
+                where: {
+                    id_english_level: oldData.englishLevel
+                }
+            })
         }
         if(filterSkill !== '') {
             filteredApplicants = filteredApplicants.filter(applicant =>
                 applicant.id_skill_1 == filterSkill || applicant.id_skill_2 == filterSkill || applicant.id_skill_3 == filterSkill || applicant.id_skill_4 == filterSkill)
+
+            //oldData
+            oldData.skill = await Skills.findAll({
+                where: {
+                    id_skill: oldData.skill
+                }
+            }) 
         }
         if(filterOtherLanguage !== '') {
             filteredApplicants = filteredApplicants.filter(applicant =>
                 applicant.id_language_1 == filterOtherLanguage || applicant.id_language_2 == filterOtherLanguage || applicant.id_language_3 == filterOtherLanguage || applicant.id_language_4 == filterOtherLanguage || applicant.id_language_5 == filterOtherLanguage)
+
+            //oldData
+            oldData.otherLanguage = await Skills.findAll({
+                where: {
+                    id_languages: oldData.otherLanguage
+                }
+            })
         }
 
-        res.render("filteredApplicants", { filteredApplicants, AllEnglishLevels, AllSkills, AllOtherLanguages, AllCountries})
+        res.render("filteredApplicants", { filteredApplicants, AllEnglishLevels, AllSkills, AllOtherLanguages, AllCountries, oldData })
     }
 }
