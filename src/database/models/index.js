@@ -16,9 +16,7 @@ sequelize = new Sequelize({
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
   host: process.env.DB_HOST,
-  dialect:'mysql',
-  dialectModule: require('mysql2'),
-  insecureAuth : true
+  dialect:'postgres',
 });
 
 

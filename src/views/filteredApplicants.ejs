@@ -23,25 +23,25 @@
                 <form class="mb-6 flex flex-wrap" method="POST" action="/filterApplicants" enctype="form-data" id="form">
 
                     <input name="firstName" class="py-4 px-3 border rounded-xl m-2" type="text" placeholder="First Name">
-
+        
                     <input name="lastName" class="py-4 px-3 border rounded-xl m-2" type="text" placeholder="Last Name">
-
+        
                     <div class="flex flex-wrap mb-2">
                     <label class="w-full mb-1">Country</label>
                     <select name="country" class="py-4 px-3 border rounded-xl">
                         <option selected></option>
                         <% for (const country of AllCountries) { %>
-                            <option value=<%=country.ID_Country%>><%= country.Country %></option>
+                            <option value=<%=country.id_country%>><%= country.country %></option>
                         <% } %>
                     </select>
                     </div>
-
+        
                     <div class="flex flex-wrap mb-2">
                     <label class="w-full mb-1">English Level</label>
                     <select name="englishLevel" class="py-4 px-3 border rounded-xl">
                         <option selected></option>
                         <% for (const englishLevel of AllEnglishLevels) { %>
-                            <option value=<%=englishLevel.ID_English_Level%>><%= englishLevel.English_Level %></option>
+                            <option value=<%=englishLevel.id_english_level%>><%= englishLevel.english_level %></option>
                         <% } %>
                     </select>
                     </div>
@@ -51,21 +51,21 @@
                     <select name="skill" class="py-4 px-3 border rounded-xl">
                         <option selected></option>
                         <% for (const skill of AllSkills) { %>
-                            <option value=<%=skill.ID_Skill%>><%= skill.Skill %></option>
+                            <option value=<%=skill.id_skill%>><%= skill.skill %></option>
                         <% } %>
                     </select>
                    </div>
-
+        
                    <div class="flex flex-wrap mb-2">
                     <label class="w-full mb-1">Other Language</label>
                     <select name="otherLanguage" class="py-4 px-3 border rounded-xl">
                         <option selected></option>
                         <% for (const otherLanguage of AllOtherLanguages) { %>
-                            <option value=<%=otherLanguage.ID_Languages%>><%= otherLanguage.Languages %></option>
+                            <option value=<%=otherLanguage.id_Languages%>><%= otherLanguage.languages %></option>
                         <% } %>
                     </select>
                    </div>
-
+        
                     <button class="py-3 px-6 text-lg bg-orange-200 hover:bg-orange-300 rounded-xl m-2" type="submit">Search</button>
                 </form>
 
@@ -73,18 +73,18 @@
                     <% for (const applicant of filteredApplicants) { %>
                         <div>
                             <div class="p-6 bg-white rounded-b-xl min-h-fit">
-                                <h2 class="text-2xl"><%= applicant.First_Name %></h2>
-                                <h3 class="text-xl"><%= applicant.Last_Name %></h3>
-                                <p class="text-gray-500"><%= applicant.Country.Country %></p>
-                                <p class="text-gray-500"><%= applicant.Email %></p>
-                                <p class="text-gray-500">Phone: <%= applicant.Phone %></p>
-                                <p class="text-gray-500">Availability: <%= applicant.Availability %></p>
-                                <p class="text-gray-500">English Level: <%= applicant.English_Level.English_Level %></p>
-                                <% if (applicant.Specialization) {%>
-                                    <p class="text-gray-500">Specialization: <%= applicant.Specialization %></p>
+                                <h2 class="text-2xl"><%= applicant.first_name %></h2>
+                                <h3 class="text-xl"><%= applicant.last_name %></h3>
+                                <p class="text-gray-500"><%= applicant.Country.country %></p>
+                                <p class="text-gray-500"><%= applicant.email %></p>
+                                <p class="text-gray-500">Phone: <%= applicant.phone %></p>
+                                <p class="text-gray-500">Availability: <%= applicant.availability %></p>
+                                <p class="text-gray-500">English Level: <%= applicant.English_Level.english_level %></p>
+                                <% if (applicant.specialization) {%>
+                                    <p class="text-gray-500">Specialization: <%= applicant.specialization %></p>
                                 <% } %>
-                                <% if (applicant.Resume_Link) {%>
-                                    <p class="text-gray-500">Resume Link: <a class="text-blue-900 underline hover:underline-offset-4" href=<%=applicant.Resume_Link%> download=<%= applicant.First_Name %>>Download CV</a></p>
+                                <% if (applicant.resume_link) {%>
+                                    <p class="text-gray-500">Resume Link: <a class="text-blue-900 underline hover:underline-offset-4" href=<%=applicant.resume_link%> download=<%= applicant.First_Name %>>Download CV</a></p>
                                 <% } %>
                             </div>
                         </div>

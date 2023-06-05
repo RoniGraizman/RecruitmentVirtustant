@@ -2,18 +2,18 @@ module.exports = function(sequelize, dataTypes){
 
     let alias = "EnglishLevels" //Como sequelize llama a nuestra tabla
 	let cols = {
-		ID_English_Level: {
+		id_english_level: {
             type: dataTypes.INTEGER,
 			primaryKey: true,
 			autoIncrement: true
 		},
-		English_Level: {
+		english_level: {
             type: dataTypes.STRING(50),
             allownull: false,
 		},
 	}
 	let config = {
-		tableName: "English_Levels",
+		tableName: "english_levels",
 		timestamps: false
 	}
 	let EnglishLevels = sequelize.define(alias,cols,config);
@@ -21,7 +21,7 @@ module.exports = function(sequelize, dataTypes){
     EnglishLevels.associate = function(models){
         EnglishLevels.hasMany(models.Applicants, { 
             as: "Applicants", 
-            foreignKey: "ID_English_Level"
+            foreignKey: "id_english_level"
         });
     }
 	return EnglishLevels;

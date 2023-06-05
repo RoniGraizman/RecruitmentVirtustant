@@ -2,30 +2,30 @@ module.exports = function(sequelize, dataTypes){
 
     let alias = "ApplicationsInfo" //Como sequelize llama a nuestra tabla
 	let cols = {
-        ID_Application : {
+        if_application : {
             type:dataTypes.INTEGER,
 			primaryKey: true,
 			autoIncrement: true
 		},
-		ID_Applicant: {
+		id_applicant: {
             type: dataTypes.INTEGER,
             allownull: false,
         },
-        ID_Customer_Job : {
+        id_customer_job : {
             type: dataTypes.INTEGER,
             allownull: false,
         },
-        Applicant_Hour_Rate: {
+        applicant_hour_rate: {
             type: dataTypes.FLOAT,
             allownull: false,
         },
-        Date: {
+        date: {
             type: dataTypes.DATE,
             allownull: false,
         },
 	}
 	let config = {
-		tableName: "Application_Information",
+		tableName: "application_information",
 		timestamps: false
 	}
 	let ApplicationsInfo = sequelize.define(alias,cols,config);
@@ -33,11 +33,11 @@ module.exports = function(sequelize, dataTypes){
     ApplicationsInfo.associate = function(models){
         ApplicationsInfo.belongsTo(models.Applicants, { 
             as: "Applicant", 
-            foreignKey: "ID_Applicant"
+            foreignKey: "id_applicant"
         });
         ApplicationsInfo.belongsTo(models.CustomersJobs, { 
             as: "CustomerJob", 
-            foreignKey: "ID_Customer_Job"
+            foreignKey: "id_customer_job"
         });
     }
 

@@ -2,22 +2,22 @@ module.exports = function(sequelize, dataTypes){
 
     let alias = "Users" //Como sequelize llama a nuestra tabla
 	let cols = {
-		ID_Users: {
+		id_users: {
             type: dataTypes.INTEGER,
 			primaryKey: true,
 			autoIncrement: true
 		},
-		UserName: {
+		username: {
             type: dataTypes.STRING(100),
             allownull: false,
 		},
-        Password: {
+        password: {
             type: dataTypes.STRING(100),
             allownull: false,
 		},
 	}
 	let config = {
-		tableName: "Users",
+		tableName: "users",
 		timestamps: false
 	}
 	let Users = sequelize.define(alias,cols,config);

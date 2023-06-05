@@ -26,13 +26,13 @@ module.exports = {
         let userToLogin = await Users.findOne(
             {     
                 where: {
-                    userName: UserName,
+                    username: UserName,
                     password: Password,
                 }
             })
             
         if(userToLogin) {
-            req.session.userLogged = await Users.findByPk(userToLogin.ID_Users)
+            req.session.userLogged = await Users.findByPk(userToLogin.id_users)
             return res.redirect("/home")
         }
         else {
@@ -85,27 +85,27 @@ module.exports = {
 
         if(filterFirstName !== '') {
             filteredApplicants = filteredApplicants.filter(applicant =>
-                applicant.First_Name === filterFirstName)
+                applicant.first_name === filterFirstName)
         }
         if(filterLastName !== '') {
             filteredApplicants = filteredApplicants.filter(applicant =>
-                applicant.Last_Name === filterLastName)
+                applicant.last_name === filterLastName)
         }
         if(filterCountry !== '') {
             filteredApplicants = filteredApplicants.filter(applicant =>
-                applicant.ID_Country == filterCountry)
+                applicant.id_country == filterCountry)
         }
         if(filterEnglishLevel !== '') {
             filteredApplicants = filteredApplicants.filter(applicant =>
-                applicant.ID_English_Level == filterEnglishLevel)
+                applicant.id_english_level == filterEnglishLevel)
         }
         if(filterSkill !== '') {
             filteredApplicants = filteredApplicants.filter(applicant =>
-                applicant.ID_Skill_1 == filterSkill || applicant.ID_Skill_2 == filterSkill || applicant.ID_Skill_3 == filterSkill || applicant.ID_Skill_4 == filterSkill)
+                applicant.id_skill_1 == filterSkill || applicant.id_skill_2 == filterSkill || applicant.id_skill_3 == filterSkill || applicant.id_skill_4 == filterSkill)
         }
         if(filterOtherLanguage !== '') {
             filteredApplicants = filteredApplicants.filter(applicant =>
-                applicant.ID_Language_1 == filterOtherLanguage || applicant.ID_Language_2 == filterOtherLanguage || applicant.ID_Language_3 == filterOtherLanguage || applicant.ID_Language_4 == filterOtherLanguage || applicant.ID_Language_5 == filterOtherLanguage)
+                applicant.id_language_1 == filterOtherLanguage || applicant.id_language_2 == filterOtherLanguage || applicant.id_language_3 == filterOtherLanguage || applicant.id_language_4 == filterOtherLanguage || applicant.id_language_5 == filterOtherLanguage)
         }
 
         res.render("filteredApplicants", { filteredApplicants, AllEnglishLevels, AllSkills, AllOtherLanguages, AllCountries})
