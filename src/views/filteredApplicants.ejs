@@ -34,7 +34,13 @@
                             <option selected value="<%= oldData.country[0].id_country %>"> <%= oldData.country[0].country %>  </option>
                           <% } %> 
                         <% for (const country of AllCountries) { %>
-                            <option value=<%=country.id_country%>><%= country.country %></option>
+                            <% if (locals.oldData && oldData.country) { %>
+                                <% if (oldData.country[0].id_country !== country.id_country) {%>
+                                    <option value=<%=country.id_country%>><%= country.country %></option>
+                                <% } %>
+                            <% } else { %>
+                                <option value=<%=country.id_country%>><%= country.country %></option>
+                            <% } %>
                         <% } %>
                     </select>
                     </div>
@@ -47,20 +53,51 @@
                             <option selected value="<%= oldData.englishLevel[0].id_english_level %>"> <%= oldData.englishLevel[0].english_level %>  </option>
                         <% } %> 
                         <% for (const englishLevel of AllEnglishLevels) { %>
-                            <option value=<%=englishLevel.id_english_level%>><%= englishLevel.english_level %></option>
+                            <% if (locals.oldData && oldData.englishLevel) { %>
+                                <% if (oldData.englishLevel[0].id_english_level !== englishLevel.id_english_level) {%>
+                                    <option value=<%=englishLevel.id_english_level%>><%= englishLevel.english_level %></option>
+                                <% } %>
+                            <% } else { %>
+                                <option value=<%=englishLevel.id_english_level%>><%= englishLevel.english_level %></option>
+                            <% } %>
                         <% } %>
                     </select>
                     </div>
         
                     <div class="flex flex-wrap mb-2">
-                    <label class="w-full mb-1">Skill</label>
-                    <select name="skill" class="py-4 px-3 border rounded-xl">
+                    <label class="w-full mb-1">Specialization</label>
+                    <select name="specialization" class="py-4 px-3 border rounded-xl">
                         <option selected></option>
-                        <% if (locals.oldData && oldData.skill) { %> 
-                            <option selected value="<%= oldData.skill[0].id_skill %>"> <%= oldData.skill[0].skill %>  </option>
+                        <% if (locals.oldData && oldData.specialization) { %> 
+                            <option selected value="<%= oldData.specialization[0].id_specialization %>"> <%= oldData.specialization[0].specialization %>  </option>
                           <% } %> 
-                        <% for (const skill of AllSkills) { %>
-                            <option value=<%=skill.id_skill%>><%= skill.skill %></option>
+                        <% for (const specialization of AllSpecializations) { %>
+                            <% if (locals.oldData && oldData.specialization) { %>
+                                <% if (oldData.specialization[0].id_specialization !== specialization.id_specialization) {%>
+                                    <option value=<%=specialization.id_specialization%>><%= specialization.specialization %></option>
+                                <% } %>
+                            <% } else { %>
+                                <option value=<%=specialization.id_specialization%>><%= specialization.specialization %></option>
+                            <% } %>
+                        <% } %>
+                    </select>
+                   </div>
+
+                   <div class="flex flex-wrap mb-2">
+                    <label class="w-full mb-1">Availability</label>
+                    <select name="availability" class="py-4 px-3 border rounded-xl">
+                        <option selected></option>
+                        <% if (locals.oldData && oldData.availability) { %> 
+                            <option selected value="<%= oldData.availability[0].id_availability %>"> <%= oldData.availability[0].availability %>  </option>
+                          <% } %> 
+                        <% for (const availability of AllAvailability) { %>
+                            <% if (locals.oldData && oldData.availability) { %>
+                                <% if (oldData.availability[0].id_availability !== availability.id_availability) {%>
+                                    <option value=<%=availability.id_availability%>><%= availability.availability %></option>
+                                <% } %>
+                            <% } else { %>
+                                <option value=<%=availability.id_availability%>><%= availability.availability %></option>
+                            <% } %>
                         <% } %>
                     </select>
                    </div>
@@ -70,10 +107,16 @@
                     <select name="otherLanguage" class="py-4 px-3 border rounded-xl">
                         <option selected></option>
                         <% if (locals.oldData && oldData.otherLanguage) { %> 
-                            <option selected value="<%= oldData.otherLanguage[0].id_languages %>"> <%= oldData.otherLanguage[0].languages %>  </option>
+                            <option selected value="<%= oldData.otherLanguage[0].languages %>"> <%= oldData.otherLanguage[0].languages %>  </option>
                           <% } %> 
                         <% for (const otherLanguage of AllOtherLanguages) { %>
-                            <option value=<%=otherLanguage.id_Languages%>><%= otherLanguage.languages %></option>
+                            <% if (locals.oldData && oldData.otherLanguage) { %>
+                                <% if (oldData.otherLanguage[0].languages !== otherLanguage.languages) {%>
+                                    <option value=<%=otherLanguage.languages%>><%= otherLanguage.languages %></option>
+                                <% } %>
+                            <% } else { %>
+                                <option value=<%=otherLanguage.languages%>><%= otherLanguage.languages %></option>
+                            <% } %>
                         <% } %>
                     </select>
                    </div>

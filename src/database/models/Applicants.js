@@ -2,7 +2,7 @@ module.exports = function(sequelize, dataTypes){
 
     let alias = "Applicants" //Como sequelize llama a nuestra tabla
 	let cols = {
-		id_aplicant: {
+		id_applicant: {
             type:dataTypes.INTEGER,
 			primaryKey: true,
 			autoIncrement: true
@@ -23,7 +23,7 @@ module.exports = function(sequelize, dataTypes){
             type: dataTypes.INTEGER,
             allownull: false,
         },
-        availability: {
+        id_availability: {
             type: dataTypes.STRING(50),
             allownull: false,
         },
@@ -31,7 +31,7 @@ module.exports = function(sequelize, dataTypes){
             type: dataTypes.STRING(256),
             allownull: true,
         },
-        specialization: {
+        id_specialization: {
             type: dataTypes.STRING(100),
             allownull: true,
         },
@@ -43,39 +43,11 @@ module.exports = function(sequelize, dataTypes){
             type: dataTypes.INTEGER,
             allownull: false,
         },
-        id_skill_1: {
-            type: dataTypes.STRING(100),
-            allownull: true,
+        id_status: {
+            type: dataTypes.INTEGER,
+            allownull: false,
         },
-        id_skill_2: {
-            type: dataTypes.STRING(100),
-            allownull: true,
-        },
-        id_skill_3: {
-            type: dataTypes.STRING(100),
-            allownull: true,
-        },
-        id_skill_4: {
-            type: dataTypes.STRING(100),
-            allownull: true,
-        },
-        id_language_1: {
-            type: dataTypes.STRING(100),
-            allownull: true,
-        },
-        id_language_2: {
-            type: dataTypes.STRING(100),
-            allownull: true,
-        },
-        id_language_3: {
-            type: dataTypes.STRING(100),
-            allownull: true,
-        },
-        id_language_4: {
-            type: dataTypes.STRING(100),
-            allownull: true,
-        },
-        id_language_5: {
+        other_languages: {
             type: dataTypes.STRING(100),
             allownull: true,
         },
@@ -97,10 +69,20 @@ module.exports = function(sequelize, dataTypes){
             as: "English_Level", 
             foreignKey: "id_english_level"
         });
-        //Application Info Association
-        Applicants.hasMany(models.ApplicationsInfo, { 
-            as: "ApplicationsInfo", 
-            foreignKey: "id_applicant"
+        //Specialization Association
+        Applicants.belongsTo(models.Specializations, { 
+            as: "Specialization", 
+            foreignKey: "id_specialization"
+        });
+        //Availability Association
+        Applicants.belongsTo(models.Availability, { 
+            as: "Availability", 
+            foreignKey: "id_availability"
+        });
+        //Status Association
+        Applicants.belongsTo(models.Status, { 
+            as: "Status", 
+            foreignKey: "id_status"
         });
     }
 

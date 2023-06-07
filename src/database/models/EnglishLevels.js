@@ -19,6 +19,7 @@ module.exports = function(sequelize, dataTypes){
 	let EnglishLevels = sequelize.define(alias,cols,config);
 
     EnglishLevels.associate = function(models){
+		//Applicants Association
         EnglishLevels.hasMany(models.Applicants, { 
             as: "Applicants", 
             foreignKey: "id_english_level"

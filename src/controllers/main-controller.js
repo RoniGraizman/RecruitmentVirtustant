@@ -5,7 +5,9 @@ const { Countries } = require("../database/models");
 const { CustomersJob } = require("../database/models");
 const { EnglishLevels } = require("../database/models");
 const { OtherLanguages } = require("../database/models");
-const { Skills } = require("../database/models");
+const { Availability } = require("../database/models");
+const { Specializations } = require("../database/models");
+const { Status } = require("../database/models");
 const { Users } = require("../database/models");
 
 
@@ -55,25 +57,29 @@ module.exports = {
         })
         const AllCountries = await Countries.findAll()
         const AllEnglishLevels = await EnglishLevels.findAll()
-        const AllSkills = await Skills.findAll()
         const AllOtherLanguages = await OtherLanguages.findAll()
+        const AllAvailability = await Availability.findAll()
+        const AllSpecializations = await Specializations.findAll()
+
         
         //res.send(AllApplicants)
-        res.render("home", { AllApplicants, AllEnglishLevels, AllSkills, AllOtherLanguages, AllCountries})
+        res.render("home", { AllApplicants, AllEnglishLevels, AllOtherLanguages, AllCountries, AllAvailability, AllSpecializations})
     },
 
     filterApplicants: async (req, res) => {
 
         const AllCountries = await Countries.findAll()
         const AllEnglishLevels = await EnglishLevels.findAll()
-        const AllSkills = await Skills.findAll()
         const AllOtherLanguages = await OtherLanguages.findAll()
+        const AllAvailability = await Availability.findAll()
+        const AllSpecializations = await Specializations.findAll()
 
         const filterFirstName = req.body.firstName;
         const filterLastName = req.body.lastName;
         const filterCountry = req.body.country
         const filterEnglishLevel = req.body.englishLevel;
-        const filterSkill = req.body.skill;
+        const filterSpecialization = req.body.specialization;
+        const filterAvailability = req.body.availability;
         const filterOtherLanguage = req.body.otherLanguage;
         let oldData = req.body
 
@@ -114,29 +120,41 @@ module.exports = {
                 }
             })
         }
-        if(filterSkill !== '') {
+        if(filterSpecialization !== '') {
             filteredApplicants = filteredApplicants.filter(applicant =>
-                applicant.id_skill_1 == filterSkill || applicant.id_skill_2 == filterSkill || applicant.id_skill_3 == filterSkill || applicant.id_skill_4 == filterSkill)
+                applicant.id_specialization == filterSpecialization)
 
             //oldData
-            oldData.skill = await Skills.findAll({
+            oldData.specialization = await Specializations.findAll({
                 where: {
-                    id_skill: oldData.skill
+                    id_specialization: oldData.specialization
+                }
+            }) 
+        }
+        if(filterAvailability !== '') {
+            filteredApplicants = filteredApplicants.filter(applicant =>
+                applicant.id_availability == filterAvailability)
+
+            //oldData
+            oldData.availability = await Availability.findAll({
+                where: {
+                    id_availability: oldData.availability
                 }
             }) 
         }
         if(filterOtherLanguage !== '') {
+            
             filteredApplicants = filteredApplicants.filter(applicant =>
-                applicant.id_language_1 == filterOtherLanguage || applicant.id_language_2 == filterOtherLanguage || applicant.id_language_3 == filterOtherLanguage || applicant.id_language_4 == filterOtherLanguage || applicant.id_language_5 == filterOtherLanguage)
-
+                applicant.other_languages.includes(filterOtherLanguage))
+            
             //oldData
-            oldData.otherLanguage = await Skills.findAll({
+            oldData.otherLanguage = await OtherLanguages.findAll({
                 where: {
-                    id_languages: oldData.otherLanguage
+                    languages: oldData.otherLanguage
                 }
             })
         }
 
-        res.render("filteredApplicants", { filteredApplicants, AllEnglishLevels, AllSkills, AllOtherLanguages, AllCountries, oldData })
+        res.render("filteredApplicants", { filteredApplicants, AllEnglishLevels, AllOtherLanguages, AllCountries, AllAvailability, AllSpecializations, oldData })
     }
 }

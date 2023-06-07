@@ -42,11 +42,21 @@
             </div>
 
             <div class="flex flex-wrap mb-2">
-            <label class="w-full mb-1">Skill</label>
-            <select name="skill" class="py-4 px-3 border rounded-xl">
+            <label class="w-full mb-1">Specialization</label>
+            <select name="specialization" class="py-4 px-3 border rounded-xl">
                 <option selected></option>
-                <% for (const skill of AllSkills) { %>
-                    <option value=<%=skill.id_skill%>><%= skill.skill %></option>
+                <% for (const specialization of AllSpecializations) { %>
+                    <option value=<%=specialization.id_specialization%>><%= specialization.specialization %></option>
+                <% } %>
+            </select>
+           </div>
+
+           <div class="flex flex-wrap mb-2">
+            <label class="w-full mb-1">Availability</label>
+            <select name="availability" class="py-4 px-3 border rounded-xl">
+                <option selected></option>
+                <% for (const availability of AllAvailability) { %>
+                    <option value=<%=availability.id_availability%>><%= availability.availability %></option>
                 <% } %>
             </select>
            </div>
@@ -56,7 +66,7 @@
             <select name="otherLanguage" class="py-4 px-3 border rounded-xl">
                 <option selected></option>
                 <% for (const otherLanguage of AllOtherLanguages) { %>
-                    <option value=<%=otherLanguage.id_Languages%>><%= otherLanguage.languages %></option>
+                    <option value=<%=otherLanguage.languages%>><%= otherLanguage.languages %></option>
                 <% } %>
             </select>
            </div>

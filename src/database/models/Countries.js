@@ -19,6 +19,7 @@ module.exports = function(sequelize, dataTypes){
 	let Countries = sequelize.define(alias,cols,config);
 
     Countries.associate = function(models){
+		//Applicants Association
         Countries.hasMany(models.Applicants, { 
             as: "Applicants", 
             foreignKey: "id_country"
