@@ -73,14 +73,9 @@
                         <p class="text-gray-500"><%= applicant.Country.country %></p>
                         <p class="text-gray-500"><%= applicant.email %></p>
                         <p class="text-gray-500">Phone: <%= applicant.phone %></p>
-                        
-                            <p class="text-gray-500">Availability: <%= applicant.Availability.availability %></p>
-                        
+                        <p class="text-gray-500">Availability: <%= applicant.Availability.availability %></p>
                         <p class="text-gray-500">English Level: <%= applicant.English_Level.english_level %></p>
                         <p class="text-gray-500">Specialization: <%= applicant.Specialization.specialization %></p>
-                        
-                            <p class="text-gray-500">Specialization: <%= applicant.Specialization.specialization %></p>
-                        
                         <% if (applicant.resume_link) {%>
                             <p class="text-gray-500">Resume Link: <a class="text-blue-900 underline hover:underline-offset-4" href=<%=applicant.resume_link%>>>Download CV</a></p>
                         <% } %>
