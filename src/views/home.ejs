@@ -61,16 +61,6 @@
             </select>
            </div>
 
-           <div class="flex flex-wrap mb-2">
-            <label class="w-full mb-1">Other Language</label>
-            <select name="otherLanguage" class="py-4 px-3 border rounded-xl">
-                <option selected></option>
-                <% for (const otherLanguage of AllOtherLanguages) { %>
-                    <option value=<%=otherLanguage.languages%>><%= otherLanguage.languages %></option>
-                <% } %>
-            </select>
-           </div>
-
             <button class="py-3 px-6 text-lg bg-orange-200 hover:bg-orange-300 rounded-xl m-2" type="submit">Search</button>
         </form>
 
@@ -83,13 +73,16 @@
                         <p class="text-gray-500"><%= applicant.Country.country %></p>
                         <p class="text-gray-500"><%= applicant.email %></p>
                         <p class="text-gray-500">Phone: <%= applicant.phone %></p>
-                        <p class="text-gray-500">Availability: <%= applicant.availability %></p>
+                        
+                            <p class="text-gray-500">Availability: <%= applicant.Availability.availability %></p>
+                        
                         <p class="text-gray-500">English Level: <%= applicant.English_Level.english_level %></p>
-                        <% if (applicant.specialization) {%>
-                            <p class="text-gray-500">Specialization: <%= applicant.specialization %></p>
-                        <% } %>
+                        <p class="text-gray-500">Specialization: <%= applicant.Specialization.specialization %></p>
+                        
+                            <p class="text-gray-500">Specialization: <%= applicant.Specialization.specialization %></p>
+                        
                         <% if (applicant.resume_link) {%>
-                            <p class="text-gray-500">Resume Link: <a class="text-blue-900 underline hover:underline-offset-4" href=<%=applicant.resume_link%> download=<%= applicant.First_Name %>>Download CV</a></p>
+                            <p class="text-gray-500">Resume Link: <a class="text-blue-900 underline hover:underline-offset-4" href=<%=applicant.resume_link%>>>Download CV</a></p>
                         <% } %>
                     </div>
                 </div>

@@ -47,10 +47,6 @@ module.exports = function(sequelize, dataTypes){
             type: dataTypes.INTEGER,
             allownull: false,
         },
-        other_languages: {
-            type: dataTypes.STRING(100),
-            allownull: true,
-        },
 	}
 	let config = {
 		tableName: "applicants",

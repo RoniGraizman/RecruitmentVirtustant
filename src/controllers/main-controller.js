@@ -53,24 +53,25 @@ module.exports = {
             include: [
                 {association: 'Country'},
                 {association: 'English_Level'},
+                {association: 'Availability'},
+                {association: 'Specialization'},
+                {association: 'Status'},
             ]
         })
         const AllCountries = await Countries.findAll()
         const AllEnglishLevels = await EnglishLevels.findAll()
-        const AllOtherLanguages = await OtherLanguages.findAll()
         const AllAvailability = await Availability.findAll()
         const AllSpecializations = await Specializations.findAll()
 
         
         //res.send(AllApplicants)
-        res.render("home", { AllApplicants, AllEnglishLevels, AllOtherLanguages, AllCountries, AllAvailability, AllSpecializations})
+        res.render("home", { AllApplicants, AllEnglishLevels, AllCountries, AllAvailability, AllSpecializations})
     },
 
     filterApplicants: async (req, res) => {
 
         const AllCountries = await Countries.findAll()
         const AllEnglishLevels = await EnglishLevels.findAll()
-        const AllOtherLanguages = await OtherLanguages.findAll()
         const AllAvailability = await Availability.findAll()
         const AllSpecializations = await Specializations.findAll()
 
@@ -80,13 +81,15 @@ module.exports = {
         const filterEnglishLevel = req.body.englishLevel;
         const filterSpecialization = req.body.specialization;
         const filterAvailability = req.body.availability;
-        const filterOtherLanguage = req.body.otherLanguage;
         let oldData = req.body
 
         let filteredApplicants = await Applicants.findAll({
             include: [
                 {association: 'Country'},
                 {association: 'English_Level'},
+                {association: 'Availability'},
+                {association: 'Specialization'},
+                {association: 'Status'},
             ]
         })
 
@@ -142,19 +145,7 @@ module.exports = {
                 }
             }) 
         }
-        if(filterOtherLanguage !== '') {
-            
-            filteredApplicants = filteredApplicants.filter(applicant =>
-                applicant.other_languages.includes(filterOtherLanguage))
-            
-            //oldData
-            oldData.otherLanguage = await OtherLanguages.findAll({
-                where: {
-                    languages: oldData.otherLanguage
-                }
-            })
-        }
 
-        res.render("filteredApplicants", { filteredApplicants, AllEnglishLevels, AllOtherLanguages, AllCountries, AllAvailability, AllSpecializations, oldData })
+        res.render("filteredApplicants", { filteredApplicants, AllEnglishLevels, AllCountries, AllAvailability, AllSpecializations, oldData })
     }
 }
