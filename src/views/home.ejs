@@ -41,16 +41,6 @@
             </select>
             </div>
 
-            <div class="flex flex-wrap mb-2">
-            <label class="w-full mb-1">Specialization</label>
-            <select name="specialization" class="py-4 px-3 border rounded-xl">
-                <option selected></option>
-                <% for (const specialization of AllSpecializations) { %>
-                    <option value=<%=specialization.id_specialization%>><%= specialization.specialization %></option>
-                <% } %>
-            </select>
-           </div>
-
            <div class="flex flex-wrap mb-2">
             <label class="w-full mb-1">Availability</label>
             <select name="availability" class="py-4 px-3 border rounded-xl">
@@ -75,7 +65,6 @@
                         <p class="text-gray-500">Phone: <%= applicant.phone %></p>
                         <p class="text-gray-500">Availability: <%= applicant.Availability.availability %></p>
                         <p class="text-gray-500">English Level: <%= applicant.English_Level.english_level %></p>
-                        <p class="text-gray-500">Specialization: <%= applicant.Specialization.specialization %></p>
                         <% if (applicant.resume_link) {%>
                             <p class="text-gray-500">Resume Link: <a class="text-blue-900 underline hover:underline-offset-4" href=<%=applicant.resume_link%>>>Download CV</a></p>
                         <% } %>

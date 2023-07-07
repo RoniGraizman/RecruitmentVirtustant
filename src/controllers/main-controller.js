@@ -54,7 +54,6 @@ module.exports = {
                 {association: 'Country'},
                 {association: 'English_Level'},
                 {association: 'Availability'},
-                {association: 'Specialization'},
                 {association: 'Status'},
             ]
         })
@@ -65,7 +64,7 @@ module.exports = {
 
         
         //res.send(AllApplicants)
-        res.render("home", { AllApplicants, AllEnglishLevels, AllCountries, AllAvailability, AllSpecializations})
+        res.render("home", { AllApplicants, AllEnglishLevels, AllCountries, AllAvailability })
     },
 
     filterApplicants: async (req, res) => {
@@ -73,13 +72,11 @@ module.exports = {
         const AllCountries = await Countries.findAll()
         const AllEnglishLevels = await EnglishLevels.findAll()
         const AllAvailability = await Availability.findAll()
-        const AllSpecializations = await Specializations.findAll()
 
         const filterFirstName = req.body.firstName;
         const filterLastName = req.body.lastName;
         const filterCountry = req.body.country
         const filterEnglishLevel = req.body.englishLevel;
-        const filterSpecialization = req.body.specialization;
         const filterAvailability = req.body.availability;
         let oldData = req.body
 
@@ -88,7 +85,6 @@ module.exports = {
                 {association: 'Country'},
                 {association: 'English_Level'},
                 {association: 'Availability'},
-                {association: 'Specialization'},
                 {association: 'Status'},
             ]
         })
@@ -123,17 +119,6 @@ module.exports = {
                 }
             })
         }
-        if(filterSpecialization !== '') {
-            filteredApplicants = filteredApplicants.filter(applicant =>
-                applicant.id_specialization == filterSpecialization)
-
-            //oldData
-            oldData.specialization = await Specializations.findAll({
-                where: {
-                    id_specialization: oldData.specialization
-                }
-            }) 
-        }
         if(filterAvailability !== '') {
             filteredApplicants = filteredApplicants.filter(applicant =>
                 applicant.id_availability == filterAvailability)
@@ -146,6 +131,6 @@ module.exports = {
             }) 
         }
 
-        res.render("filteredApplicants", { filteredApplicants, AllEnglishLevels, AllCountries, AllAvailability, AllSpecializations, oldData })
+        res.render("filteredApplicants", { filteredApplicants, AllEnglishLevels, AllCountries, AllAvailability, oldData })
     }
 }
